@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { RoutesService } from './routes.service';
 import { RouteModel } from './route.model';
+import { Subscription } from 'rxjs';
+import { MimicService } from '../shared/mimic.service';
 
 @Component({
   selector: 'app-routes-list',
@@ -9,13 +11,22 @@ import { RouteModel } from './route.model';
 })
 export class RoutesListComponent implements OnInit {
 
-  private routes: RouteModel[];
+  routes: RouteModel[];
+  subscription: Subscription;
 
-  constructor(private routesService: RoutesService) { }
+  constructor(
+    private routesService: RoutesService,
+    private mimicService: MimicService
+  ) { }
 
   ngOnInit() {
 
-    this.routes = this.routesService.getRoutes();
+    this.mimicService.getRoutes();
+
+    this.subscription = this.routesService.routesChanged
+      .subscribe((routes: RouteModel[]) => this.routes = routes);
+
+      this.routes = this.routesService.getRoutes();
   }
 
 }

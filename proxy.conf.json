@@ -1,0 +1,6 @@
+{
+  "/mimic/*": {
+    "target": "http://mimic-api:8080",
+    "secure": false
+  }
+}
