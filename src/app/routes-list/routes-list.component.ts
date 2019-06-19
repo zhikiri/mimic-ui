@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { RoutesService } from './routes.service';
+import { RouteModel } from './route.model';
 
 @Component({
   selector: 'app-routes-list',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class RoutesListComponent implements OnInit {
 
-  constructor() { }
+  private routes: RouteModel[];
+
+  constructor(private routesService: RoutesService) { }
 
   ngOnInit() {
+
+    this.routes = this.routesService.getRoutes();
   }
 
 }

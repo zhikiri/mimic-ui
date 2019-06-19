@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  background-color: #292934;
+  color: #fcfcfc;
+
+  main {
+      width: 75%;
+      height: 100vh;
+  }
+
+  aside {
+      width: 25%;
+      height: 100vh;
+      background-color: #252732;
+
+      .logo {
+        height: 5rem;
+        text-align: center;
+        padding-top: 2rem;
+      }
+  }
+}

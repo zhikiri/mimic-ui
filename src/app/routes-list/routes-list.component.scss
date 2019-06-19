@@ -1,0 +1,41 @@
+.routes-list {
+
+  .routes-list-item {
+
+    a {
+      color: #4d4e58;
+      display: block;
+      padding: 1.2rem 0.2rem 1.2rem 1.5rem;
+      text-decoration: none;
+      transition: background-color 0.5s, color 0.5s;
+
+      &.active, &:hover {
+        color: #fcfcfc;
+        background-color: #3a3934;
+        border-right: 0.2rem solid #f0a03d;
+      }
+
+      span {
+        font-weight: bold;
+        display: inline-block;
+        padding: 0.2rem;
+
+        &.get {
+          color: #5bc693;
+        }
+
+        &.post {
+          color: #5067f6;
+        }
+
+        &.delete {
+          color: #ec5c60;
+        }
+
+        &.put {
+          color: #efa047;
+        }
+      }
+    }
+  }
+}
