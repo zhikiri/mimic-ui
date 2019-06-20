@@ -29,4 +29,9 @@ export class RoutesListComponent implements OnInit {
       this.routes = this.routesService.getRoutes();
   }
 
+  onRefresh() {
+
+    this.mimicService.getRoutes();
+  }
+
 }
