@@ -7,12 +7,7 @@ export class RoutesService {
 
   routesChanged = new Subject<RouteModel[]>();
 
-  private routes: RouteModel[] = [
-    { method: 'get', endpoint: '/users' },
-    { method: 'post', endpoint: '/products' },
-    { method: 'delete', endpoint: '/orders' },
-    { method: 'put', endpoint: '/carts' }
-  ]
+  private routes: RouteModel[] = [];
 
   setRoutes(routes: RouteModel[]) {
 
