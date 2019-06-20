@@ -1,9 +1,7 @@
 <div class="routes-list">
-  <div *ngFor="let route of routes">
-    <p class="routes-list-item">
-      <a href="#">
-        <span [ngClass]="route.method">{{ route.method | uppercase }}</span>{{ route.endpoint }}
-      </a>
-    </p>
-  </div>
+  <p class="routes-list-item" *ngFor="let route of routes">
+    <a href="#">
+      <span [ngClass]="route.method">{{ route.method | uppercase }}</span>{{ route.endpoint }}
+    </a>
+  </p>
 </div>
