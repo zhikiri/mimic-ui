@@ -3,7 +3,7 @@ version: '3'
 services:
 
   mimic-api:
-    image: zhikiri/mimic:0.1.0
+    image: zhikiri/mimic:1.0.0
     container_name: mimic
     volumes:
       - ./mocks:/mimic/mocks
