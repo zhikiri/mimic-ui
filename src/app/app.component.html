@@ -1,9 +1,11 @@
 <div class="container">
   <aside>
-    <div class="logo">Mimic UI</div>
+    <div class="logo">
+      <a routerLink="/">Mimic UI</a>
+    </div>
     <app-routes-list></app-routes-list>
   </aside>
   <main>
-    <app-route-details></app-route-details>
+    <router-outlet></router-outlet>
   </main>
 </div>

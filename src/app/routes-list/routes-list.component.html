@@ -1,6 +1,6 @@
 <div class="routes-list">
   <p class="routes-list-item" *ngFor="let route of routes">
-    <a href="#" (click)="onRouteSelect(route)">
+    <a [routerLink]="'route/' + route.id" routerLinkActive="active">
       <span [ngClass]="route.method">{{ route.method | uppercase }}</span>{{ route.path }}
     </a>
   </p>

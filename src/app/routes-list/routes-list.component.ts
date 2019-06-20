@@ -3,6 +3,7 @@ import { RoutesService } from './routes.service';
 import RouteModel from './route.model';
 import { Subscription } from 'rxjs';
 import { MimicService } from '../shared/mimic.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-routes-list',
@@ -16,7 +17,8 @@ export class RoutesListComponent implements OnInit {
 
   constructor(
     private routesService: RoutesService,
-    private mimicService: MimicService
+    private mimicService: MimicService,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -29,14 +31,10 @@ export class RoutesListComponent implements OnInit {
     this.routes = this.routesService.getRoutes();
   }
 
-  onRouteSelect(route: RouteModel) {
-
-    this.mimicService.getRouteById(route.id);
-  }
-
   onRefresh() {
 
     this.mimicService.getRoutes();
+    this.router.navigate(['/']);
   }
 
 }

@@ -3,13 +3,7 @@
     <p>ID: {{ route.id }}</p>
     <p>METHOD: {{ route.method }}</p>
     <p>ENDPOINT: {{ route.path }}</p>
-    <p>
-      RESPONSE: <br />
-      <code>{{ route.response | json }}</code>
-    </p>
-    <p>
-      LOGS: <br />
-      <code>{{ route.logs | json }}</code>
-    </p>
+    <pre>{{ route.response | json }}</pre>
+    <pre>{{ route.logs | json }}</pre>
   </div>
 </div>
