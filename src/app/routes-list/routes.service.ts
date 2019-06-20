@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { RouteModel } from './route.model';
+import RouteModel from './route.model';
 import { Subject } from 'rxjs';
 
 @Injectable()

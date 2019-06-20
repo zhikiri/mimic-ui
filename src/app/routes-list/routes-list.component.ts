@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RoutesService } from './routes.service';
-import { RouteModel } from './route.model';
+import RouteModel from './route.model';
 import { Subscription } from 'rxjs';
 import { MimicService } from '../shared/mimic.service';
 

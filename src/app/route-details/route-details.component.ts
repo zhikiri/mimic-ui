@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RouteModel } from '../routes-list/route.model';
+import RouteModel from '../routes-list/route.model';
 import { Subscription } from 'rxjs';
 import { RoutesService } from '../routes-list/routes.service';
 

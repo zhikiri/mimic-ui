@@ -2,6 +2,14 @@
   <div class="details" *ngIf="route != null">
     <p>ID: {{ route.id }}</p>
     <p>METHOD: {{ route.method }}</p>
-    <p>ENDPOINT: {{ route.endpoint }}</p>
+    <p>ENDPOINT: {{ route.path }}</p>
+    <p>
+      RESPONSE: <br />
+      <code>{{ route.response | json }}</code>
+    </p>
+    <p>
+      LOGS: <br />
+      <code>{{ route.logs | json }}</code>
+    </p>
   </div>
 </div>
