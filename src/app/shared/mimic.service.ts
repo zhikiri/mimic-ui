@@ -26,9 +26,22 @@ export class MimicService {
 
       const models = resp.routes.map((route: MimicRoute): RouteModel => {
 
-        return { method: route.method, endpoint: route.path };
+        return { id: route.id, method: route.method, endpoint: route.path };
       });
       this.routesService.setRoutes(models);
+    });
+  }
+
+  getRouteById(id: number) {
+
+    const url = this.getRequestURL(`/routes/${id}`);
+    this.httpClient.get<MimicRoute>(url).subscribe((resp: MimicRoute) => {
+
+      this.routesService.setSelectedRoute({
+        id: resp.id,
+        method: resp.method,
+        endpoint: resp.path
+      });
     });
   }
 

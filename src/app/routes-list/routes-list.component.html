@@ -1,6 +1,6 @@
 <div class="routes-list">
   <p class="routes-list-item" *ngFor="let route of routes">
-    <a href="#">
+    <a href="#" (click)="onRouteSelect(route)">
       <span [ngClass]="route.method">{{ route.method | uppercase }}</span>{{ route.endpoint }}
     </a>
   </p>

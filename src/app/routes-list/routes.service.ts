@@ -6,8 +6,10 @@ import { Subject } from 'rxjs';
 export class RoutesService {
 
   routesChanged = new Subject<RouteModel[]>();
+  selectedRouteChanged = new Subject<RouteModel>();
 
   private routes: RouteModel[] = [];
+  private selectedRoute: RouteModel;
 
   setRoutes(routes: RouteModel[]) {
 
@@ -15,8 +17,19 @@ export class RoutesService {
     this.routesChanged.next(this.routes.slice());
   }
 
+  setSelectedRoute(route: RouteModel) {
+
+    this.selectedRoute = route;
+    this.selectedRouteChanged.next({ ...this.selectedRoute });
+  }
+
   getRoutes(): RouteModel[] {
 
     return this.routes.slice();
+  }
+
+  getSelectedRoute(): RouteModel {
+
+    return this.selectedRoute;
   }
 }

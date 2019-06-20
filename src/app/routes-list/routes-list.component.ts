@@ -26,7 +26,12 @@ export class RoutesListComponent implements OnInit {
     this.subscription = this.routesService.routesChanged
       .subscribe((routes: RouteModel[]) => this.routes = routes);
 
-      this.routes = this.routesService.getRoutes();
+    this.routes = this.routesService.getRoutes();
+  }
+
+  onRouteSelect(route: RouteModel) {
+
+    this.mimicService.getRouteById(route.id);
   }
 
   onRefresh() {
