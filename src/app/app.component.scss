@@ -1,18 +1,19 @@
 .container {
   display: flex;
   justify-content: space-between;
-  background-color: #252732;
-  color: #fcfcfc;
+  background-color: #2A2D37;
+  color: #F6F7FF;
 
   main {
     width: 75%;
     height: 100vh;
+    overflow: auto;
   }
 
   aside {
     width: 25%;
     height: 100vh;
-    background-color: #292934;
+    overflow: auto;
 
     .logo {
       height: 5rem;
