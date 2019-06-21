@@ -1,12 +1,33 @@
 .route-details {
+  height: 90vh;
+  padding: 1.5rem 2rem;
+  margin: 2rem 3.5rem 2rem 0;
+  background-color: #3B3E48;
+  border-radius: 1.5rem;
 
-  .details {
-    margin-top: 5rem;
-    padding: 1rem 2rem;
+  .head {
+    display: flex;
+    align-items: flex-start;
+    border-bottom: 0.1rem solid #31343E;
 
-    p {
-      font-size: 1.5rem;
-      margin: 1rem 0;
+    .http-method {
+      min-width: 5rem;
+      margin-bottom: 0.5rem;
+      padding: 1rem 0;
+      border-right: 0.1rem solid #31343E;
     }
+
+    .http-path {
+      padding: 1rem 1.5rem;
+    }
+  }
+
+  p {
+    padding: 1rem 0;
+    color: #858995;
+  }
+
+  .response {
+    max-height: calc(100% - 8rem);
   }
 }

@@ -20,6 +20,9 @@ export class RoutesService {
   setSelectedRoute(route: RouteModel) {
 
     this.selectedRoute = route;
+    this.selectedRoute.response = JSON.stringify(
+      this.selectedRoute.response, null, '\t'
+    );
     this.selectedRouteChanged.next({ ...this.selectedRoute });
   }
 

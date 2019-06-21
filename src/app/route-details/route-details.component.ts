@@ -1,8 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import RouteModel from '../routes-list/route.model';
-import { Subscription } from 'rxjs';
-import { RoutesService } from '../routes-list/routes.service';
 import { ActivatedRoute, Params } from '@angular/router';
+import { Subscription } from 'rxjs';
+
+import { AceConfigInterface } from 'ngx-ace-wrapper';
+
+import 'brace';
+import 'brace/mode/json';
+import 'brace/theme/pastel_on_dark';
+
+import RouteModel from '../routes-list/route.model';
+import { RoutesService } from '../routes-list/routes.service';
 import { MimicService } from '../shared/mimic.service';
 
 @Component({
@@ -14,6 +21,12 @@ export class RouteDetailsComponent implements OnInit {
 
   route: RouteModel;
   subscription: Subscription;
+
+  public config: AceConfigInterface = {
+    mode: 'json',
+    theme: 'pastel_on_dark',
+    readOnly : false
+  };
 
   constructor(
     private routesService: RoutesService,

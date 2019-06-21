@@ -1,9 +1,19 @@
 <div class="route-details">
-  <div class="details" *ngIf="route != null">
-    <p>ID: {{ route.id }}</p>
-    <p>METHOD: {{ route.method }}</p>
-    <p>ENDPOINT: {{ route.path }}</p>
-    <pre>{{ route.response | json }}</pre>
-    <pre>{{ route.logs | json }}</pre>
+  <div class="head">
+    <div class="http-method">
+      <span *ngIf="route">{{ route.method | uppercase }}</span>
+    </div>
+    <div class="http-path">
+      <span *ngIf="route">{{ route.path }}</span>
+    </div>
   </div>
+
+  <p>Response</p>
+  <ace
+    *ngIf="route"
+    class="response"
+    fxFlex="auto"
+    [config]="config"
+    [(value)]="route.response">
+  </ace>
 </div>
