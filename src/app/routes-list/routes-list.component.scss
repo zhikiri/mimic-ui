@@ -1,19 +1,20 @@
 .routes-list {
+  padding-left: 1rem;
 
   .routes-list-item {
+    transition: transform 0.3s;
+
+    &.active, &:hover {
+      transform: translateX(1rem);
+    }
 
     a {
-      color: #4d4e58;
+      color: #A9ACBC;
       display: block;
       padding: 1.2rem 0.2rem 1.2rem 1.5rem;
       text-decoration: none;
       transition: background-color 0.5s, color 0.5s;
-
-      &.active, &:hover {
-        color: #fcfcfc;
-        background-color: #3a3934;
-        border-right: 0.2rem solid #f0a03d;
-      }
+      border-bottom: 0.1rem solid #353842;
 
       span {
         font-weight: bold;
@@ -21,19 +22,19 @@
         padding: 0.2rem;
 
         &.get {
-          color: #5bc693;
+          color: #A6C29B;
         }
 
         &.post {
-          color: #5067f6;
+          color: #A9AF85;
         }
 
         &.delete {
-          color: #ec5c60;
+          color: #AE8266;
         }
 
         &.put {
-          color: #efa047;
+          color: #A9AF85;
         }
       }
     }
