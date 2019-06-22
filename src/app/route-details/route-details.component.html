@@ -1,19 +1,24 @@
 <div class="route-details">
-  <div class="head">
-    <div class="http-method">
-      <span *ngIf="route">{{ route.method | uppercase }}</span>
+  <div class="details">
+    <div class="head">
+      <div class="http-method">
+        <span *ngIf="route">{{ route.method | uppercase }}</span>
+      </div>
+      <div class="http-path">
+        <span *ngIf="route">{{ route.path }}</span>
+      </div>
     </div>
-    <div class="http-path">
-      <span *ngIf="route">{{ route.path }}</span>
-    </div>
+    <p>Response</p>
+    <ace
+      *ngIf="route"
+      class="response"
+      fxFlex="auto"
+      [config]="config"
+      [(value)]="route.response">
+    </ace>
   </div>
-
-  <p>Response</p>
-  <ace
-    *ngIf="route"
-    class="response"
-    fxFlex="auto"
-    [config]="config"
-    [(value)]="route.response">
-  </ace>
+  <div class="actions">
+    <button class="save" title="Save"></button>
+    <button class="delete" title="Remove"></button>
+  </div>
 </div>

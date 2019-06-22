@@ -1,7 +1,16 @@
 .route-details {
-  height: 90vh;
+  display: flex;
+  align-items: flex-start;
+
+  &>div {
+    height: 90vh;
+    margin: 2rem 0;
+  }
+}
+
+.details {
+  width: 95%;
   padding: 1.5rem 2rem;
-  margin: 2rem 3.5rem 2rem 0;
   background-color: #3B3E48;
   border-radius: 1.5rem;
 
@@ -29,5 +38,38 @@
 
   .response {
     max-height: calc(100% - 8rem);
+  }
+
+}
+
+.actions {
+  width: 5%;
+
+  button {
+    border: none;
+    width: 3.5rem;
+    height: 50%;
+    background-size: 2rem;
+    transition: background-position-y 0.3s;
+    cursor: pointer;
+  }
+
+  .save {
+    background: url('/assets/icons/save.svg') top no-repeat;
+    background-position-y: 2.5rem;
+    border-bottom: 0.1rem solid #3B3E48;
+
+    &:hover {
+      background-position-y: 3.5rem;
+    }
+  }
+
+  .delete {
+    background: url('/assets/icons/trash.svg') bottom no-repeat;
+    background-position-y: calc(100% - 2.5rem);
+
+    &:hover {
+      background-position-y: calc(100% - 3.5rem);
+    }
   }
 }
