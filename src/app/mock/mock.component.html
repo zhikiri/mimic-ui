@@ -1,0 +1,31 @@
+<form #mockForm="ngForm" (ngSubmit)="onSave(mockForm.value)">
+  <div class="route-details" *ngIf="selectedMock">
+    <div class="details">
+      <div class="head">
+        <div class="http-method">
+          <app-method-select
+            (onMethodSelect)="editedMock.httpMethod = $event"
+            [(selectedMethod)]="editedMock.httpMethod">
+          </app-method-select>
+        </div>
+        <div class="http-path">
+          /<input
+            type="text"
+            name="endpoint"
+            [(ngModel)]="editedMock.endpoint">
+        </div>
+      </div>
+      <p>Response</p>
+      <ace
+        class="response"
+        fxFlex="auto"
+        [config]="getResponseEditorConfig()"
+        [(value)]="editedMock.response">
+      </ace>
+    </div>
+    <div class="actions">
+      <button type="submit" class="save" title="Save"></button>
+      <button class="delete" title="Remove"></button>
+    </div>
+  </div>
+</form>

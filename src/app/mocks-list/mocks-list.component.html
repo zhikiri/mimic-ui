@@ -1,0 +1,9 @@
+<div class="mocks-list">
+  <p *ngFor="let mock of mocks" routerLinkActive="active" class="mocks-list-item">
+    <a [routerLink]="'mocks/' + mock.hash">
+      <span [ngClass]="mock.httpMethod">{{ mock.httpMethod | uppercase }}</span>{{ mock.endpoint }}
+    </a>
+  </p>
+
+  <button (click)="onRefresh()" class="action refresh"></button>
+</div>

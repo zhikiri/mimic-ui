@@ -1,7 +1,7 @@
-.routes-list {
+.mocks-list {
   padding-left: 1rem;
 
-  .routes-list-item {
+  .mocks-list-item {
     transition: transform 0.3s;
 
     &.active, &:hover {
@@ -40,7 +40,7 @@
     }
   }
 
-  .routes-action {
+  .action {
     position: fixed;
     bottom: 0;
     left: 0;

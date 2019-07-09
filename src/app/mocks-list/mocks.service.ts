@@ -1,23 +1,23 @@
 import { Injectable } from "@angular/core";
-import RouteModel from './route.model';
+import MockModel from '../shared/mock.model';
 import { Subject } from 'rxjs';
 
 @Injectable()
-export class RoutesService {
+export class MocksService {
 
-  routesChanged = new Subject<RouteModel[]>();
-  selectedRouteChanged = new Subject<RouteModel>();
+  routesChanged = new Subject<MockModel[]>();
+  selectedRouteChanged = new Subject<MockModel>();
 
-  private routes: RouteModel[] = [];
-  private selectedRoute: RouteModel;
+  private routes: MockModel[] = [];
+  private selectedRoute: MockModel;
 
-  setRoutes(routes: RouteModel[]) {
+  setRoutes(routes: MockModel[]) {
 
     this.routes = routes;
     this.routesChanged.next(this.routes.slice());
   }
 
-  setSelectedRoute(route: RouteModel) {
+  setSelectedRoute(route: MockModel) {
 
     this.selectedRoute = route;
     this.selectedRoute.response = JSON.stringify(
@@ -26,12 +26,12 @@ export class RoutesService {
     this.selectedRouteChanged.next({ ...this.selectedRoute });
   }
 
-  getRoutes(): RouteModel[] {
+  getMocks(): MockModel[] {
 
     return this.routes.slice();
   }
 
-  getSelectedRoute(): RouteModel {
+  getSelectedRoute(): MockModel {
 
     return this.selectedRoute;
   }

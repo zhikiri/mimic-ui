@@ -1,5 +1,5 @@
 
-export default class RouteModel {
+export default class MockModel {
   id: string;
   httpMethod: "get" | "post" | "put" | "delete";
   endpoint: string;

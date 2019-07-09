@@ -1,9 +1,0 @@
-<div class="routes-list">
-  <p class="routes-list-item" routerLinkActive="active" *ngFor="let route of routes">
-    <a [routerLink]="'route/' + route.hash">
-      <span [ngClass]="route.httpMethod">{{ route.httpMethod | uppercase }}</span>{{ route.endpoint }}
-    </a>
-  </p>
-
-  <button (click)="onRefresh()" class="routes-action refresh"></button>
-</div>
