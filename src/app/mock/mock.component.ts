@@ -9,9 +9,7 @@ import 'brace/mode/json';
 import 'brace/theme/pastel_on_dark';
 
 import MockModel from '../shared/mock.model';
-import { MocksService } from '../mocks-list/mocks.service';
 import { ApiService } from '../shared/api.service';
-import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-mock',
