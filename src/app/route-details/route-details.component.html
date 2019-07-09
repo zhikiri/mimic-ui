@@ -2,19 +2,14 @@
   <div class="details">
     <div class="head">
       <div class="http-method">
-        <span *ngIf="route">{{ route.method | uppercase }}</span>
+        <span *ngIf="route">{{ route.httpMethod | uppercase }}</span>
       </div>
       <div class="http-path">
-        <span *ngIf="route">{{ route.path }}</span>
+        <span *ngIf="route">{{ route.endpoint }}</span>
       </div>
     </div>
     <p>Response</p>
-    <ace
-      *ngIf="route"
-      class="response"
-      fxFlex="auto"
-      [config]="config"
-      [(value)]="route.response">
+    <ace *ngIf="route" class="response" fxFlex="auto" [config]="config" [(value)]="route.response">
     </ace>
   </div>
   <div class="actions">

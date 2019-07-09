@@ -15,15 +15,15 @@ export class MimicService {
 
   getRoutes() {
 
-    const url = this.getRequestURL('/routes');
-    this.httpClient.get<GetRouteResponse>(url).subscribe(
-      (resp: GetRouteResponse) => this.routesService.setRoutes(resp.routes)
+    const url = this.getRequestURL('/mocks');
+    this.httpClient.get<RouteModel[]>(url).subscribe(
+      (resp: RouteModel[]) => this.routesService.setRoutes(resp)
     );
   }
 
   getRouteById(id: string) {
 
-    const url = this.getRequestURL(`/routes/${id}`);
+    const url = this.getRequestURL(`/mocks/${id}`);
     this.httpClient.get<RouteModel>(url).subscribe(
       (route: RouteModel) => this.routesService.setSelectedRoute(route)
     );

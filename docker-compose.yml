@@ -3,10 +3,13 @@ version: '3'
 services:
 
   mimic-api:
-    image: zhikiri/mimic:1.0.0
+    image: zhikiri/mimic:2.0.0
     container_name: mimic
     volumes:
       - ./mocks:/mimic/mocks
+    environment:
+      - API_PORT=8080
+      - MOCKS_PATH=/mimic/mocks
     ports:
       - 8080:8080
 
