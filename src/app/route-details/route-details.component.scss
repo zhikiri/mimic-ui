@@ -24,10 +24,17 @@
       margin-bottom: 0.5rem;
       padding: 1rem 0;
       border-right: 0.1rem solid #31343E;
+      cursor: pointer;
     }
 
     .http-path {
-      padding: 1rem 1.5rem;
+      padding: 0.7rem 1.5rem;
+
+      input {
+        border: none;
+        background: transparent;
+        color: white;
+      }
     }
   }
 

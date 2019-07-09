@@ -1,0 +1,15 @@
+<div class="http-method-selector">
+  <span
+    class="selected"
+    (click)="inSelectionMode = !inSelectionMode">
+    {{ selectedMethod | uppercase }}
+  </span>
+  <div class="methods-list" *ngIf="inSelectionMode">
+    <button
+      *ngFor="let method of methods"
+      [class.selected]="method === selectedMethod"
+      (click)="onSelect(method)">
+      {{ method | uppercase }}
+    </button>
+  </div>
+</div>

@@ -1,7 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule, Routes } from '@angular/router';
+import { NgModule } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AceModule, ACE_CONFIG, AceConfigInterface } from 'ngx-ace-wrapper';
 
@@ -11,6 +12,7 @@ import { AppComponent } from './app.component';
 import { RoutesListComponent } from './routes-list/routes-list.component';
 import { MimicService } from './shared/mimic.service';
 import { RouteDetailsComponent } from './route-details/route-details.component';
+import { MethodSelectComponent } from './route-details/method-select/method-select.component';
 
 const DEFAULT_ACE_CONFIG: AceConfigInterface = { tabSize: 2 };
 
@@ -22,13 +24,15 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     RoutesListComponent,
-    RouteDetailsComponent
+    RouteDetailsComponent,
+    MethodSelectComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    RouterModule.forRoot(appRoutes, { enableTracing: true }),
-    AceModule
+    RouterModule.forRoot(appRoutes),
+    AceModule,
+    ReactiveFormsModule
   ],
   providers: [
     RoutesService,

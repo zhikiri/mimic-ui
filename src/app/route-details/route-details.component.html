@@ -1,19 +1,26 @@
-<div class="route-details">
+<div class="route-details" *ngIf="route">
   <div class="details">
     <div class="head">
       <div class="http-method">
-        <span *ngIf="route">{{ route.httpMethod | uppercase }}</span>
+        <app-method-select
+          (onMethodSelect)="route.httpMethod = $event"
+          [(selectedMethod)]="route.httpMethod">
+        </app-method-select>
       </div>
       <div class="http-path">
-        <span *ngIf="route">{{ route.endpoint }}</span>
+        /<input type="text" [formControl]="endpoint">
       </div>
     </div>
     <p>Response</p>
-    <ace *ngIf="route" class="response" fxFlex="auto" [config]="config" [(value)]="route.response">
-    </ace>
+    <ace
+      class="response"
+      fxFlex="auto"
+      [config]="config"
+      [(value)]="route.response"
+    ></ace>
   </div>
   <div class="actions">
-    <button class="save" title="Save"></button>
+    <button class="save" title="Save" (click)="onSave()"></button>
     <button class="delete" title="Remove"></button>
   </div>
 </div>

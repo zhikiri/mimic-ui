@@ -11,6 +11,7 @@ import 'brace/theme/pastel_on_dark';
 import RouteModel from '../routes-list/route.model';
 import { RoutesService } from '../routes-list/routes.service';
 import { MimicService } from '../shared/mimic.service';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-route-details',
@@ -19,14 +20,16 @@ import { MimicService } from '../shared/mimic.service';
 })
 export class RouteDetailsComponent implements OnInit {
 
-  route: RouteModel;
-  subscription: Subscription;
-
   public config: AceConfigInterface = {
     mode: 'json',
     theme: 'pastel_on_dark',
     readOnly : false
   };
+
+  route: RouteModel;
+  subscription: Subscription;
+
+  endpoint = new FormControl('');
 
   constructor(
     private routesService: RoutesService,
@@ -42,7 +45,16 @@ export class RouteDetailsComponent implements OnInit {
     })
 
     this.subscription = this.routesService.selectedRouteChanged
-      .subscribe((route: RouteModel) => this.route = route);
+      .subscribe((route: RouteModel) => {
+        this.route = route;
+        this.endpoint.setValue(route.endpoint.slice(1));
+      });
+  }
+
+  onSave() {
+
+    this.route.endpoint = `/${this.endpoint.value}`;
+    console.log(this.route);
   }
 
 }
