@@ -1,9 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
-
-import MockModel from '../shared/mock.model';
-import { ApiService } from '../shared/api.service';
 import { Router } from '@angular/router';
+
+import ApiService from '../shared/api.service';
+import MockModel from '../shared/mock.model';
 
 @Component({
   selector: 'app-mocks-list',

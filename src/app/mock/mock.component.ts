@@ -9,7 +9,7 @@ import 'brace/mode/json';
 import 'brace/theme/pastel_on_dark';
 
 import MockModel from '../shared/mock.model';
-import { ApiService } from '../shared/api.service';
+import ApiService, { StatusResponse } from '../shared/api.service';
 
 @Component({
   selector: 'app-mock',
@@ -54,11 +54,22 @@ export class MockComponent implements OnInit, OnDestroy {
 
   onSave() {
 
+    if (this.isNewMockRequired()) {
+      // todo : call delete mock and create after
+    }
+    // todo : call create mock
+
     console.log(this.editedMock);
   }
 
   ngOnDestroy() {
 
     this.mockSubscription.unsubscribe();
+  }
+
+  private isNewMockRequired(): boolean {
+
+    return this.selectedMock.endpoint !== this.editedMock.endpoint
+      || this.selectedMock.httpMethod !== this.editedMock.httpMethod;
   }
 }

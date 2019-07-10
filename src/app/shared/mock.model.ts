@@ -1,6 +1,6 @@
 
 export default class MockModel {
-  id: string;
+  hash: string;
   httpMethod: "get" | "post" | "put" | "delete";
   endpoint: string;
   response?: any;
