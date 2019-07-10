@@ -1,9 +1,23 @@
 .http-method-selector {
 
   .methods-list {
-    margin-top: 1.4rem;
+    margin-top: 1rem;
     position: absolute;
     z-index: 10;
+    border: 0.1rem solid #51545E;
+    background: #51545E;
+    border-radius: 0.5rem;
+    padding: 0.5rem 0;
+
+    &:before {
+      content: " ";
+      position: absolute;
+      top: -0.7rem;
+      left: 0rem;
+      border-left: solid 0.7rem transparent;
+      border-right: solid 0.7rem transparent;
+      border-bottom: solid 0.7rem #51545E;
+    }
 
     button {
       width: 5rem;
@@ -17,7 +31,7 @@
       cursor: pointer;
 
       &.selected, &:hover {
-        background: #D1D1DA;
+        background: rgb(119, 119, 124);
       }
     }
   }
