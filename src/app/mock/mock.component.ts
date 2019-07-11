@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 import { AceConfigInterface } from 'ngx-ace-wrapper';
@@ -10,6 +10,7 @@ import 'brace/theme/pastel_on_dark';
 
 import MockModel from '../shared/mock.model';
 import ApiService, { StatusResponse } from '../shared/api.service';
+import MocksService from '../shared/mocks.service';
 
 @Component({
   selector: 'app-mock',
@@ -24,15 +25,17 @@ export class MockComponent implements OnInit, OnDestroy {
   editedMock: MockModel;
 
   constructor(
-    private ApiService: ApiService,
-    private activatedRoute: ActivatedRoute
+    private apiService: ApiService,
+    private mocksService: MocksService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit() {
 
     this.activatedRoute.params.subscribe((params: Params) => {
 
-      this.mockSubscription = this.ApiService.getMockByHash(params['hash'])
+      this.mockSubscription = this.apiService.getMockByHash(params['hash'])
         .subscribe((mock: MockModel) => {
           this.selectedMock = mock;
           this.setEditedMock(mock);
@@ -54,22 +57,26 @@ export class MockComponent implements OnInit, OnDestroy {
 
   onSave() {
 
-    if (this.isNewMockRequired()) {
-      // todo : call delete mock and create after
-    }
-    // todo : call create mock
-
     console.log(this.editedMock);
+  }
+
+  onDelete() {
+
+    this.mocksService.deleteMock(this.selectedMock.hash);
+    this.router.navigate(['/']);
+    /*
+    this.apiService.deleteMockByHash(this.selectedMock.hash).subscribe(
+      () => {
+        this.apiService.getMocks();
+        this.router.navigate(['/'])
+      },
+      (err) => { console.log(err) }
+    );
+    */
   }
 
   ngOnDestroy() {
 
     this.mockSubscription.unsubscribe();
-  }
-
-  private isNewMockRequired(): boolean {
-
-    return this.selectedMock.endpoint !== this.editedMock.endpoint
-      || this.selectedMock.httpMethod !== this.editedMock.httpMethod;
   }
 }

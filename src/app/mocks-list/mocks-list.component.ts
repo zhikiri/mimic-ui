@@ -1,45 +1,29 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
-import { Router } from '@angular/router';
+import { Component, OnInit } from '@angular/core';
 
-import ApiService from '../shared/api.service';
 import MockModel from '../shared/mock.model';
+import MocksService from '../shared/mocks.service';
 
 @Component({
   selector: 'app-mocks-list',
   templateUrl: './mocks-list.component.html',
   styleUrls: ['./mocks-list.component.scss']
 })
-export class MocksListComponent implements OnInit, OnDestroy {
+export class MocksListComponent implements OnInit {
 
   mocks: MockModel[] = [];
 
-  mocksSubscription: Subscription;
-
   constructor(
-    private ApiService: ApiService,
-    private router: Router
+    private mocksService: MocksService
   ) { }
 
   ngOnInit() {
 
-    this.loadMocks();
+    this.mocksService.loadMocks();
+    this.mocksService.mocksChanged.subscribe((mocks: MockModel[]) => this.mocks = mocks);
   }
 
   onRefresh() {
 
-    this.loadMocks();
-    this.router.navigate(['/']);
-  }
-
-  ngOnDestroy() {
-
-    this.mocksSubscription.unsubscribe();
-  }
-
-  private loadMocks() {
-
-    this.mocksSubscription = this.ApiService.getMocks()
-      .subscribe((mocks: MockModel[]) => this.mocks = mocks);
+    this.mocksService.loadMocks();
   }
 }

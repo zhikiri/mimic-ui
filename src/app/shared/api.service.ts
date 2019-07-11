@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 import MockModel from './mock.model';
-import { Observable } from 'rxjs';
-import LogRecord from './log-record.model';
+import LogRecordModel from './log-record.model';
 
 export type StatusResponse = { status: boolean };
 
@@ -12,30 +12,32 @@ export default class ApiService {
 
   private apiPrefix = '/mimic';
 
-  constructor(private http: HttpClient) { }
+  public constructor(
+    private http: HttpClient
+  ) { }
 
-  getMocks(): Observable<MockModel[]> {
+  public getMocks(): Observable<MockModel[]> {
 
     return this.http.get<MockModel[]>(`${this.apiPrefix}/mocks`);
   }
 
-  getMockByHash(hash: string): Observable<MockModel> {
+  public getMockByHash(hash: string): Observable<MockModel> {
 
     return this.http.get<MockModel>(`${this.apiPrefix}/mocks/${hash}`);
   }
 
-  getMockLogRecords(hash: string): Observable<LogRecord[]> {
+  public getMockLogRecords(hash: string): Observable<LogRecordModel[]> {
 
-    return this.http.get<LogRecord[]>(`${this.apiPrefix}/mocks/${hash}/logs`);
+    return this.http.get<LogRecordModel[]>(`${this.apiPrefix}/mocks/${hash}/logs`);
   }
 
-  deleteMockByHash(hash: string): Observable<StatusResponse> {
+  public deleteMockByHash(hash: string): Observable<MockModel> {
 
-    return this.http.delete<StatusResponse>(`${this.apiPrefix}/mocks/${hash}`);
+    return this.http.delete<MockModel>(`${this.apiPrefix}/mocks/${hash}`);
   }
 
-  createMock(mock: MockModel): Observable<StatusResponse> {
+  public createMock(mock: MockModel): Observable<MockModel> {
 
-    return this.http.post<StatusResponse>(`${this.apiPrefix}/mocks`, JSON.stringify(mock));
+    return this.http.post<MockModel>(`${this.apiPrefix}/mocks`, JSON.stringify(mock));
   }
 }

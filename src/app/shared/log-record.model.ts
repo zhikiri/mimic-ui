@@ -1,5 +1,5 @@
 
-export default class LogRecord {
+export default class LogRecordModel {
   timestamp: number;
   headers: Record<string, any>[];
   query: Record<string, any>[];

@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { AceModule, ACE_CONFIG, AceConfigInterface } from 'ngx-ace-wrapper';
 
 import ApiService from './shared/api.service';
+import MocksService from './shared/mocks.service';
 
 import { AppComponent } from './app.component';
 import { MocksListComponent } from './mocks-list/mocks-list.component';
@@ -35,6 +36,7 @@ const appRoutes: Routes = [
   ],
   providers: [
     ApiService,
+    MocksService,
     {
       provide: ACE_CONFIG,
       useValue: DEFAULT_ACE_CONFIG
