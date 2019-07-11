@@ -18,8 +18,7 @@ export class MocksListComponent implements OnInit {
 
   ngOnInit() {
 
-    this.mocksService.loadMocks();
-    this.mocksService.mocksChanged.subscribe((mocks: MockModel[]) => this.mocks = mocks);
+    this.mocksService.loadMocks().subscribe((mocks: MockModel[]) => this.mocks = mocks);
   }
 
   onRefresh() {

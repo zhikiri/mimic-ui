@@ -9,7 +9,6 @@ import 'brace/mode/json';
 import 'brace/theme/pastel_on_dark';
 
 import MockModel from '../shared/mock.model';
-import ApiService, { StatusResponse } from '../shared/api.service';
 import MocksService from '../shared/mocks.service';
 
 @Component({
@@ -25,7 +24,6 @@ export class MockComponent implements OnInit, OnDestroy {
   editedMock: MockModel;
 
   constructor(
-    private apiService: ApiService,
     private mocksService: MocksService,
     private activatedRoute: ActivatedRoute,
     private router: Router
@@ -35,7 +33,7 @@ export class MockComponent implements OnInit, OnDestroy {
 
     this.activatedRoute.params.subscribe((params: Params) => {
 
-      this.mockSubscription = this.apiService.getMockByHash(params['hash'])
+      this.mockSubscription = this.mocksService.getMockByHash(params['hash'])
         .subscribe((mock: MockModel) => {
           this.selectedMock = mock;
           this.setEditedMock(mock);
@@ -50,9 +48,8 @@ export class MockComponent implements OnInit, OnDestroy {
 
   setEditedMock(mock: MockModel) {
 
-    this.editedMock = mock;
-    this.editedMock.endpoint = mock.endpoint.slice(1);
-    this.editedMock.response = JSON.stringify(mock.response, null, '\t');
+    this.editedMock = { ...mock };
+    this.editedMock.endpoint = mock.endpoint.substr(1);
   }
 
   onSave() {
@@ -64,15 +61,6 @@ export class MockComponent implements OnInit, OnDestroy {
 
     this.mocksService.deleteMock(this.selectedMock.hash);
     this.router.navigate(['/']);
-    /*
-    this.apiService.deleteMockByHash(this.selectedMock.hash).subscribe(
-      () => {
-        this.apiService.getMocks();
-        this.router.navigate(['/'])
-      },
-      (err) => { console.log(err) }
-    );
-    */
   }
 
   ngOnDestroy() {
