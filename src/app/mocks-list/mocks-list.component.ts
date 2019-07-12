@@ -12,9 +12,7 @@ export class MocksListComponent implements OnInit {
 
   mocks: MockModel[] = [];
 
-  constructor(
-    private mocksService: MocksService
-  ) { }
+  constructor(private mocksService: MocksService) { }
 
   ngOnInit() {
 

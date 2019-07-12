@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
 
 import MockModel from './mock.model';
 import ApiService from './api.service';
@@ -25,10 +25,14 @@ export default class MocksService {
 
     this.apiService.getMockByHash(hash).subscribe((mock: MockModel) => {
 
-      mock.response = JSON.stringify(mock.response, null, '\t');
-      this.setSelectedMock(mock)
+      this.setSelectedMock(mock);
     });
     return this.mockSelectionChanged;
+  }
+
+  public updateMock(mock: MockModel): Observable<MockModel> {
+
+    return this.apiService.updateMock({ ...mock, endpoint: `/${mock.endpoint}`});
   }
 
   public setMocks(mocks: MockModel[]): void {
@@ -37,10 +41,14 @@ export default class MocksService {
     this.mocksChanged.next(this.mocks.slice());
   }
 
-  public setSelectedMock(mock: MockModel | null): void {
+  public setSelectedMock(mock: MockModel): void {
 
     this.selectedMock = mock;
-    this.mockSelectionChanged.next(!mock ? null : { ...mock });
+    if (this.selectedMock.endpoint.startsWith('/')) {
+      this.selectedMock.endpoint = this.selectedMock.endpoint.substr(1);
+    }
+    this.selectedMock.response = JSON.stringify(mock.response, null, '\t');
+    this.mockSelectionChanged.next({ ...mock });
   }
 
   public deleteMock(hash: string): void {

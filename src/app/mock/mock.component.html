@@ -4,23 +4,24 @@
       <div class="head">
         <div class="http-method">
           <app-method-select
-            (onMethodSelect)="editedMock.httpMethod = $event"
-            [(selectedMethod)]="editedMock.httpMethod">
+            (onMethodSelect)="selectedMock.httpMethod = $event"
+            [(selectedMethod)]="selectedMock.httpMethod">
           </app-method-select>
         </div>
         <div class="http-path">
           /<input
             type="text"
             name="endpoint"
-            [(ngModel)]="editedMock.endpoint">
+            [(ngModel)]="selectedMock.endpoint">
         </div>
       </div>
       <p>Response</p>
       <ace
+        #editor
         class="response"
         fxFlex="auto"
-        [config]="getResponseEditorConfig()"
-        [(value)]="editedMock.response">
+        [(value)]="selectedMock.response"
+        [config]="getResponseEditorConfig()">
       </ace>
     </div>
     <div class="actions">

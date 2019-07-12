@@ -40,4 +40,15 @@ export default class ApiService {
 
     return this.http.post<MockModel>(`${this.apiPrefix}/mocks`, JSON.stringify(mock));
   }
+
+  public updateMock(mock: MockModel): Observable<MockModel> {
+
+    return this.http.put<MockModel>(
+      `${this.apiPrefix}/mocks/${mock.hash}`,
+      mock,
+      {
+        headers: {"Content-type": "application/json"}
+      }
+    );
+  }
 }
