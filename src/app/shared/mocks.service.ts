@@ -8,10 +8,8 @@ import ApiService from './api.service';
 export default class MocksService {
 
   public mocksChanged = new Subject<MockModel[]>();
-  public mockSelectionChanged = new Subject<MockModel>();
 
   private mocks: MockModel[] = [];
-  private selectedMock: MockModel = null;
 
   constructor(private apiService: ApiService) { }
 
@@ -21,34 +19,20 @@ export default class MocksService {
     return this.mocksChanged;
   }
 
-  public getMockByHash(hash: string): Subject<MockModel> {
+  public getMockByHash(hash: string): Observable<MockModel> {
 
-    this.apiService.getMockByHash(hash).subscribe((mock: MockModel) => {
-
-      this.setSelectedMock(mock);
-    });
-    return this.mockSelectionChanged;
+    return this.apiService.getMockByHash(hash);
   }
 
   public updateMock(mock: MockModel): Observable<MockModel> {
 
-    return this.apiService.updateMock({ ...mock, endpoint: `/${mock.endpoint}`});
+    return this.apiService.updateMock(mock);
   }
 
   public setMocks(mocks: MockModel[]): void {
 
     this.mocks = mocks;
     this.mocksChanged.next(this.mocks.slice());
-  }
-
-  public setSelectedMock(mock: MockModel): void {
-
-    this.selectedMock = mock;
-    if (this.selectedMock.endpoint.startsWith('/')) {
-      this.selectedMock.endpoint = this.selectedMock.endpoint.substr(1);
-    }
-    this.selectedMock.response = JSON.stringify(mock.response, null, '\t');
-    this.mockSelectionChanged.next({ ...mock });
   }
 
   public deleteMock(hash: string): void {

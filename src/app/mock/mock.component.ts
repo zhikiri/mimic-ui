@@ -9,7 +9,6 @@ import 'brace/theme/pastel_on_dark';
 
 import MockModel from '../shared/mock.model';
 import MocksService from '../shared/mocks.service';
-import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-mock',
@@ -20,42 +19,34 @@ export class MockComponent implements OnInit {
 
   @ViewChild('editor', { static: false }) editor: AceComponent;
 
-  mockSubscription: Subscription;
-
   selectedMock: MockModel;
 
-  constructor(
+  public constructor(
     private mocksService: MocksService,
     private activatedRoute: ActivatedRoute,
     private router: Router
   ) { }
 
-  ngOnInit() {
+  public ngOnInit(): void {
 
     this.activatedRoute.params.subscribe((params: Params) => {
 
-      if (this.mockSubscription) {
-        this.mockSubscription.unsubscribe();
-      }
-
-      this.mockSubscription = this.mocksService.getMockByHash(params['hash'])
-        .subscribe((mock: MockModel) => {
-
-          console.log('updated');
-          this.selectedMock = mock;
-        });
+      this.mocksService.getMockByHash(params['hash'])
+        .subscribe((mock: MockModel) => this.setSelectedMock(mock));
     });
   }
 
-  getResponseEditorConfig(): AceConfigInterface {
+  public getResponseEditorConfig(): AceConfigInterface {
 
     return { mode: 'json', theme: 'pastel_on_dark', readOnly: false };
   }
 
-  onSave() {
+  public onSave(): void {
 
     this.mocksService.updateMock({
-      ...this.selectedMock, response: JSON.parse(this.selectedMock.response)
+      ...this.selectedMock,
+      endpoint: `/${this.selectedMock.endpoint}`,
+      response: JSON.parse(this.selectedMock.response)
     }).subscribe((mock: MockModel) => {
       setTimeout(() => {
 
@@ -65,9 +56,18 @@ export class MockComponent implements OnInit {
     });
   }
 
-  onDelete() {
+  public onDelete(): void {
 
     this.mocksService.deleteMock(this.selectedMock.hash);
     this.router.navigate(['/']);
+  }
+
+  private setSelectedMock(mock: MockModel): void {
+
+    this.selectedMock = mock;
+    if (mock.endpoint.startsWith('/')) {
+      this.selectedMock.endpoint = mock.endpoint.substr(1);
+    }
+    this.selectedMock.response = JSON.stringify(mock.response, null, '\t');
   }
 }
