@@ -24,9 +24,11 @@ export default class MocksService {
     return this.apiService.getMockByHash(hash);
   }
 
-  public updateMock(mock: MockModel): Observable<MockModel> {
+  public saveMock(mock: MockModel): Observable<MockModel> {
 
-    return this.apiService.updateMock(mock);
+    return mock.hash === null
+      ? this.apiService.createMock(mock)
+      : this.apiService.updateMock(mock);
   }
 
   public setMocks(mocks: MockModel[]): void {

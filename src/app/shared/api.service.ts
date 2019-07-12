@@ -38,7 +38,13 @@ export default class ApiService {
 
   public createMock(mock: MockModel): Observable<MockModel> {
 
-    return this.http.post<MockModel>(`${this.apiPrefix}/mocks`, JSON.stringify(mock));
+    return this.http.post<MockModel>(
+      `${this.apiPrefix}/mocks`,
+      mock,
+      {
+        headers: { "Content-type": "application/json" }
+      }
+    );
   }
 
   public updateMock(mock: MockModel): Observable<MockModel> {
