@@ -50,33 +50,41 @@
 }
 
 .actions {
-  width: 5%;
+  padding-left: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex-wrap: wrap;
 
   button {
-    border: none;
-    width: 3.5rem;
-    height: 50%;
-    background-size: 2rem;
-    transition: background-position-y 0.3s;
+    width: 3rem;
+    height: 3rem;
+    background-size: 1.2rem;
+    background-repeat: no-repeat;
+    background-position: center center;
+    border: 0.1rem solid;
+    border-radius: 0.8rem;
     cursor: pointer;
+    transition: background-color linear 0.5s;
   }
 
   .save {
-    background: url('/assets/icons/save.svg') top no-repeat;
-    background-position-y: 2.5rem;
-    border-bottom: 0.1rem solid #3B3E48;
+    border-color: #32393C;
+    background-color: #32393C;
+    background-image: url('/assets/icons/save.svg');
 
     &:hover {
-      background-position-y: 3.5rem;
+      background-color: #414B4F;
     }
   }
 
   .delete {
-    background: url('/assets/icons/trash.svg') bottom no-repeat;
-    background-position-y: calc(100% - 2.5rem);
+    border-color: #333037;
+    background-color: #333037;
+    background-image: url('/assets/icons/trash.svg');
 
     &:hover {
-      background-position-y: calc(100% - 3.5rem);
+      background-color: #48444E;
     }
   }
 }
