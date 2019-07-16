@@ -6,7 +6,7 @@ import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
   styleUrls: ['./method-select.component.scss']
 })
 export class MethodSelectComponent implements OnInit {
-  @Output() onMethodSelect = new EventEmitter<string>();
+  @Output() methodSelect = new EventEmitter<string>();
   @Input() selectedMethod: string;
 
   inSelectionMode = false;
@@ -19,7 +19,7 @@ export class MethodSelectComponent implements OnInit {
 
   onSelect(method: string) {
 
-    this.onMethodSelect.emit(method);
+    this.methodSelect.emit(method);
     this.inSelectionMode = false;
   }
 

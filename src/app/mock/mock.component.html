@@ -4,7 +4,7 @@
       <div class="head">
         <div class="http-method">
           <app-method-select
-            (onMethodSelect)="selectedMock.httpMethod = $event"
+            (methodSelect)="selectedMock.httpMethod = $event"
             [(selectedMethod)]="selectedMock.httpMethod">
           </app-method-select>
         </div>

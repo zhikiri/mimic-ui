@@ -9,7 +9,6 @@ import 'brace/theme/pastel_on_dark';
 
 import MockModel from '../shared/mock.model';
 import MocksService from '../shared/mocks.service';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-mock',
@@ -32,13 +31,13 @@ export class MockComponent implements OnInit {
 
     this.activatedRoute.params.subscribe((params: Params) => {
 
-      if (params['hash'] === 'new') {
+      if (params.hash === 'new') {
 
         this.setSelectedMock({ httpMethod: 'get', endpoint: '/', hash: null, response: {} });
         return;
       }
 
-      this.mocksService.getMockByHash(params['hash'])
+      this.mocksService.getMockByHash(params.hash)
         .subscribe((mock: MockModel) => this.setSelectedMock(mock));
     });
   }

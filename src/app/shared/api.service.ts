@@ -5,7 +5,9 @@ import { Observable } from 'rxjs';
 import MockModel from './mock.model';
 import LogRecordModel from './log-record.model';
 
-export type StatusResponse = { status: boolean };
+export interface StatusResponse {
+  status: boolean;
+}
 
 @Injectable()
 export default class ApiService {
@@ -42,7 +44,7 @@ export default class ApiService {
       `${this.apiPrefix}/mocks`,
       mock,
       {
-        headers: { "Content-type": "application/json" }
+        headers: { 'Content-type': 'application/json' }
       }
     );
   }
@@ -53,7 +55,7 @@ export default class ApiService {
       `${this.apiPrefix}/mocks/${mock.hash}`,
       mock,
       {
-        headers: {"Content-type": "application/json"}
+        headers: { 'Content-type': 'application/json' }
       }
     );
   }
