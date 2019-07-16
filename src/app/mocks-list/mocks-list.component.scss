@@ -40,20 +40,36 @@
     }
   }
 
-  .action {
+  .actions {
     position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 25%;
-    background: url('/assets/icons/refresh.svg') center no-repeat;
-    border: none;
-    height: 2rem;
-    background-size: 2rem;
-    cursor: pointer;
-    padding: 1.75rem 0;
+    bottom: 2rem;
+    width: 23%;
+    text-align: center;
 
-    &:hover {
-      background-color: #313c41;
+    button {
+      width: 3rem;
+      height: 3rem;
+      margin: 0.2rem;
+      background-color: #2F313C;
+      background-size: 1.5rem;
+      background-repeat: no-repeat;
+      background-position: center center;
+      border: 0.1rem solid #2F313C;
+      border-radius: 0.5rem;
+      transition: background-color linear 0.3s;
+      cursor: pointer;
+
+      &:hover {
+        background-color: rgb(65, 68, 83);
+      }
+
+      &.create {
+        background-image: url('/assets/icons/add.svg');
+      }
+
+      &.refresh {
+        background-image: url('/assets/icons/refresh.svg');
+      }
     }
   }
 }

@@ -5,9 +5,8 @@
     </a>
   </p>
 
-  <p class="mocks-list-item">
-    <a routerLink="mocks/new">Add</a>
-  </p>
-
-  <button (click)="onRefresh()" class="action refresh"></button>
+  <div class="actions">
+    <button routerLink="mocks/new" class="create"></button>
+    <button (click)="onRefresh()" class="refresh"></button>
+  </div>
 </div>
