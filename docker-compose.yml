@@ -24,3 +24,11 @@ services:
       - 3000:4200
     depends_on:
       - mimic-api
+
+  mimic-static-ui:
+    build: ./
+    container_name: mimic-static-ui
+    ports:
+      - 8888:80
+    depends_on:
+      - mimic-api
