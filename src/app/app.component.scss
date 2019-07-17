@@ -13,15 +13,21 @@
   aside {
     width: 25%;
     height: 100vh;
-    overflow: auto;
+    // overflow: auto;
 
     .logo {
       height: 5rem;
-      text-align: center;
       padding-top: 2rem;
+      padding-left: 6rem;
+      margin-bottom: 2rem;
 
       a {
         color: #fcfcfc;
+      }
+
+      img {
+        width: 9rem;
+        height: 3rem;
       }
     }
   }
