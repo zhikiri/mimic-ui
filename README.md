@@ -25,6 +25,9 @@ services:
     container_name: mimic
     volumes:
       - ./mocks:/mimic/mocks
+    environment:
+      - API_PORT=8080
+      - MOCKS_PATH=/mimic/mocks
     ports:
       - 8080:8080
 
