@@ -2,19 +2,43 @@
   padding-left: 1rem;
 
   .mocks-list-item {
-    transition: transform 0.3s;
 
-    &.active, &:hover {
-      transform: translateX(1rem);
+    &.active {
+
+      a::after {
+        opacity: 1;
+        transform: translateX(0.75rem) rotate(45deg);
+      }
     }
 
     a {
+      position: relative;
       color: #A9ACBC;
       display: block;
       padding: 1.2rem 0.2rem 1.2rem 1.5rem;
       text-decoration: none;
       transition: background-color 0.5s, color 0.5s;
       border-bottom: 0.1rem solid #353842;
+
+      &::after {
+        opacity: 0;
+        content: " ";
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        width: 2rem;
+        height: 2rem;
+        margin: auto;
+        border-radius: 0.5rem;
+        background-color: #2A2D36;
+        background-image: url('/assets/icons/arrow-up-right.svg');
+        background-repeat: no-repeat;
+        background-size: 70%;
+        background-position: center;
+        transform: translateX(0rem) rotate(45deg);
+        transition: opacity 0.5s, transform 0.5s;
+      }
 
       span {
         font-weight: bold;
