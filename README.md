@@ -1,27 +1,43 @@
-# MimicUi
+# mimic-ui
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.0.3.
+Web UI for mimic mock server that provides a mocks management toolset.
+You can easily create, edit and delete your mocks from the simple UI.
 
-## Development server
+![ui example](https://user-images.githubusercontent.com/9018434/61359727-9e368280-a885-11e9-948f-9912e4ddf983.png)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Features
 
-## Code scaffolding
+- Safe your time with an editor which has built-in JSON schema validator
+- Navigate through your mocks
+- Create, update and delete your mocks
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## How to use it
 
-## Build
+Mimic UI is available as a docker image: `zhikiri/mimic-ui`.
+You can add it as a service into your compose file.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+Example of the `docker-compose.yml` file:
 
-## Running unit tests
+```yaml
+services:
+  mimic-api:
+    image: zhikiri/mimic:[MIMIC_VERSION]
+    container_name: mimic
+    volumes:
+      - ./mocks:/mimic/mocks
+    ports:
+      - 8080:8080
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+  mimic-ui:
+    image: zhikiri/mimic-ui:[UI_VERSION]
+    container_name: mimic-static-ui
+    ports:
+      - 8888:80
+    depends_on:
+      - mimic-api
+```
 
-## Running end-to-end tests
+**Notice:** `zhikiri/mimic` container should have `mimic` as a name. It very important for nginx configuration.
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+Of course you can use different container name, but for this you will need to inject a nginx configuration into the container (nginx congiration path `/etc/nginx/`).
 
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
