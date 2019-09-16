@@ -1,0 +1,16 @@
+.content-wrapper {
+  display: flex;
+  align-items: flex-start;
+
+  &>div {
+    height: 90vh;
+    margin: 2rem 0;
+  }
+
+  .content {
+    width: 95%;
+    padding: 1.5rem 2rem;
+    background-color: #3B3E48;
+    border-radius: 1.5rem;
+  }
+}
