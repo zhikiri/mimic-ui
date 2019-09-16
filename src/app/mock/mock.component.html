@@ -15,7 +15,10 @@
             [(ngModel)]="selectedMock.endpoint">
         </div>
       </div>
-      <p>Response</p>
+      <div class="explanation-bar">
+        <p>Response</p>
+        <a href="#" class="btn-link view" title="View logs"></a>
+      </div>
       <ace
         #editor
         class="response"

@@ -13,6 +13,7 @@ import { AppComponent } from './app.component';
 import { MocksListComponent } from './mocks-list/mocks-list.component';
 import { MockComponent } from './mock/mock.component';
 import { MethodSelectComponent } from './mock/method-select/method-select.component';
+import { LogsComponent } from './logs/logs.component';
 
 const DEFAULT_ACE_CONFIG: AceConfigInterface = { tabSize: 2 };
 
@@ -25,7 +26,8 @@ const appRoutes: Routes = [
     AppComponent,
     MocksListComponent,
     MockComponent,
-    MethodSelectComponent
+    MethodSelectComponent,
+    LogsComponent
   ],
   imports: [
     BrowserModule,
