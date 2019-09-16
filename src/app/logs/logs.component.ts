@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Params } from '@angular/router';
+
+import LogsService from './logs.service';
+import LogRecordModel from '../shared/log-record.model';
 
 @Component({
   selector: 'app-logs',
@@ -7,9 +11,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LogsComponent implements OnInit {
 
-  constructor() { }
+  selectedLogs: LogRecordModel[];
 
-  ngOnInit() {
+  constructor(
+    private logsService: LogsService,
+    private activatedRoute: ActivatedRoute
+  ) { }
+
+  ngOnInit(): void {
+
+    this.activatedRoute.params.subscribe((params: Params) => {
+
+      this.logsService.getLogsByHash(params.hash)
+        .subscribe((logs: LogRecordModel[]) => this.selectedLogs = logs);
+    })
   }
-
 }

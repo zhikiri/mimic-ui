@@ -17,7 +17,7 @@
       </div>
       <div class="explanation-bar">
         <p>Response</p>
-        <a href="#" class="btn-link view" title="View logs"></a>
+        <a [routerLink]="'/mocks/logs/' + selectedMock.hash" class="btn-link view" title="View logs"></a>
       </div>
       <ace
         #editor
