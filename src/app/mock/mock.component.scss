@@ -38,18 +38,32 @@
     }
   }
 
-  .explanation-bar {
+  .controls {
     display: flex;
     justify-content: space-between;
 
-    .btn-link.view {
-      background-image: url('/assets/icons/view-list.svg');
-      background-position: top left;
-      background-size: 1.5rem 1.5rem;
-      width: 1.5rem;
-      height: 1.5rem;
-      margin: 1rem 0;
+    .buttons {
+      padding: 1rem 0;
+
+      button {
+        background: transparent;
+        border: none;
+        color: white;
+        text-decoration: underline;
+        cursor: pointer;
+        font-family: 'Source Code Pro', monospace;
+
+        &.active {
+          text-decoration: none;
+        }
+
+        &:last-child {
+          border-left: 0.1rem solid white;
+          padding-left: 0.6rem;
+        }
+      }
     }
+
   }
 
   p {
@@ -57,8 +71,13 @@
     color: #858995;
   }
 
-  .response {
+  .code-viewer {
     max-height: calc(100% - 8rem);
+    display: none;
+
+    &.active {
+      display: block;
+    }
   }
 
 }

@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
-import { Subject, Observable } from 'rxjs';
+import { Subject, Observable} from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import MockModel from './mock.model';
+import LogRecordModel from './log-record.model';
 import ApiService from './api.service';
 
 @Injectable()
@@ -24,6 +26,14 @@ export default class MocksService {
     return this.apiService.getMockByHash(hash);
   }
 
+  public getMockLogsByHash(hash: string): Observable<LogRecordModel[]> {
+
+    return this.apiService.getMockLogRecords(hash).pipe(
+      map(this.getSortedLogs),
+      map(this.getFormattedLogs)
+    );
+  }
+
   public saveMock(mock: MockModel): Observable<MockModel> {
 
     return mock.hash === null
@@ -42,6 +52,30 @@ export default class MocksService {
     this.apiService.deleteMockByHash(hash).subscribe(() => {
 
       this.setMocks(this.mocks.filter((mock: MockModel) => mock.hash !== hash));
+    });
+  }
+
+  private getSortedLogs(logs: LogRecordModel[]): LogRecordModel[] {
+
+    logs.sort((a: LogRecordModel, b: LogRecordModel) => {
+      if (a.timestamp > b.timestamp) {
+        return -1;
+      } else if (a.timestamp < b.timestamp) {
+        return 1;
+      }
+      return 0;
+    });
+    return logs;
+  }
+
+  private getFormattedLogs(logs: LogRecordModel[]): LogRecordModel[] {
+
+    return logs.map((log: LogRecordModel) => {
+
+      const result = { ...log, date: new Date(log.timestamp * 1000).toLocaleString() };
+      delete result.timestamp;
+
+      return result;
     });
   }
 }

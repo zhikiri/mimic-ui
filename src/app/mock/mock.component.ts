@@ -8,6 +8,7 @@ import 'brace/mode/json';
 import 'brace/theme/pastel_on_dark';
 
 import MockModel from '../shared/mock.model';
+import LogRecordModel from '../shared/log-record.model';
 import MocksService from '../shared/mocks.service';
 
 @Component({
@@ -18,8 +19,13 @@ import MocksService from '../shared/mocks.service';
 export class MockComponent implements OnInit {
 
   @ViewChild('editor', { static: false }) editor: AceComponent;
+  @ViewChild('logs', { static: false }) logs: AceComponent;
 
   selectedMock: MockModel;
+  selectedLogs = JSON.stringify([], null, '\t')
+
+  isEditorActive = true;
+  isLogsActive = false;
 
   public constructor(
     private mocksService: MocksService,
@@ -42,9 +48,14 @@ export class MockComponent implements OnInit {
     });
   }
 
-  public getResponseEditorConfig(): AceConfigInterface {
+  public getEditorConfig(): AceConfigInterface {
 
     return { mode: 'json', theme: 'pastel_on_dark', readOnly: false };
+  }
+
+  public getLogsConfig(): AceConfigInterface {
+
+    return { ...this.getEditorConfig(), readOnly: true };
   }
 
   public onSave(): void {
@@ -66,6 +77,27 @@ export class MockComponent implements OnInit {
 
     this.mocksService.deleteMock(this.selectedMock.hash);
     this.router.navigate(['/']);
+  }
+
+  public onViewLogsClick(): void {
+
+    if (!this.isLogsActive) {
+      this.mocksService.getMockLogsByHash(this.selectedMock.hash)
+      .subscribe((logs: LogRecordModel[]) => {
+        console.log(logs);
+        this.selectedLogs = JSON.stringify(logs, null, '\t');
+        this.isLogsActive = true;
+        this.isEditorActive = false;
+      });
+    }
+  }
+
+  public onEditorClick(): void {
+
+    if (!this.isEditorActive) {
+      this.isEditorActive = true;
+      this.isLogsActive = false;
+    }
   }
 
   private setSelectedMock(mock: MockModel): void {

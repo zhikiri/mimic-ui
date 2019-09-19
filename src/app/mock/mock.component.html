@@ -15,16 +15,35 @@
             [(ngModel)]="selectedMock.endpoint">
         </div>
       </div>
-      <div class="explanation-bar">
+      <div class="controls">
         <p>Response</p>
-        <a [routerLink]="'/mocks/logs/' + selectedMock.hash" class="btn-link view" title="View logs"></a>
+        <div class="buttons">
+          <button
+            type="button"
+            title="Logs"
+            (click)="onViewLogsClick()"
+            [class]="isLogsActive && 'active'">VIEW LOGS</button>
+          <button
+            type="button"
+            title="Edit"
+            (click)="onEditorClick()"
+            [class]="isEditorActive && 'active'">EDITOR</button>
+        </div>
       </div>
       <ace
         #editor
-        class="response"
+        [ngClass]="{'code-viewer': true, 'active': isEditorActive}"
         fxFlex="auto"
         [(value)]="selectedMock.response"
-        [config]="getResponseEditorConfig()">
+        [config]="getEditorConfig()">
+      </ace>
+
+      <ace
+        #logs
+        [ngClass]="{'code-viewer': true, 'active': isLogsActive}"
+        fxFlex="auto"
+        [value]="selectedLogs"
+        [config]="getLogsConfig()">
       </ace>
     </div>
     <div class="actions">

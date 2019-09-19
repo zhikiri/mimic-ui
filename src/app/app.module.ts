@@ -8,19 +8,16 @@ import { AceModule, ACE_CONFIG, AceConfigInterface } from 'ngx-ace-wrapper';
 
 import ApiService from './shared/api.service';
 import MocksService from './shared/mocks.service';
-import LogsService from './logs/logs.service';
 
 import { AppComponent } from './app.component';
 import { MocksListComponent } from './mocks-list/mocks-list.component';
 import { MockComponent } from './mock/mock.component';
 import { MethodSelectComponent } from './mock/method-select/method-select.component';
-import { LogsComponent } from './logs/logs.component';
 
 const DEFAULT_ACE_CONFIG: AceConfigInterface = { tabSize: 2 };
 
 const appRoutes: Routes = [
-  { path: 'mocks/:hash', component: MockComponent },
-  { path: 'mocks/logs/:hash', component: LogsComponent }
+  { path: 'mocks/:hash', component: MockComponent }
 ];
 
 @NgModule({
@@ -28,8 +25,7 @@ const appRoutes: Routes = [
     AppComponent,
     MocksListComponent,
     MockComponent,
-    MethodSelectComponent,
-    LogsComponent
+    MethodSelectComponent
   ],
   imports: [
     BrowserModule,
@@ -41,7 +37,6 @@ const appRoutes: Routes = [
   providers: [
     ApiService,
     MocksService,
-    LogsService,
     {
       provide: ACE_CONFIG,
       useValue: DEFAULT_ACE_CONFIG
