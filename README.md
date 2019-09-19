@@ -3,7 +3,7 @@
 Web UI for mimic mock server that provides a mocks management toolset.
 You can easily create, edit and delete your mocks from the simple UI.
 
-![ui example](https://user-images.githubusercontent.com/9018434/61359727-9e368280-a885-11e9-948f-9912e4ddf983.png)
+![ui example](https://user-images.githubusercontent.com/9018434/65243590-43bdda80-daf1-11e9-9a65-e423c0b0012f.png)
 
 ## Features
 
