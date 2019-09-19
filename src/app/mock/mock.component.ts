@@ -107,5 +107,6 @@ export class MockComponent implements OnInit {
       this.selectedMock.endpoint = mock.endpoint.substr(1);
     }
     this.selectedMock.response = JSON.stringify(mock.response, null, '\t');
+    this.onEditorClick();
   }
 }

@@ -72,7 +72,8 @@ export default class MocksService {
 
     return logs.map((log: LogRecordModel) => {
 
-      const result = { ...log, date: new Date(log.timestamp * 1000).toLocaleString() };
+      const date = new Date(Math.round(log.timestamp / 1000) * 1000);
+      const result = { date: date.toLocaleString(), ...log };
       delete result.timestamp;
 
       return result;
