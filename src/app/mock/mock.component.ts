@@ -22,7 +22,7 @@ export class MockComponent implements OnInit {
   @ViewChild('logs', { static: false }) logs: AceComponent;
 
   selectedMock: MockModel;
-  selectedLogs = JSON.stringify([], null, '\t')
+  selectedLogs = JSON.stringify([], null, '\t');
 
   isEditorActive = true;
   isLogsActive = false;

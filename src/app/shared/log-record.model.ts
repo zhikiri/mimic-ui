@@ -6,7 +6,7 @@ export function newLog(): LogRecordModel {
     headers: [],
     query: [],
     body: [],
-  }
+  };
 }
 
 export default class LogRecordModel {
